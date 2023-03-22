@@ -28,6 +28,34 @@ public class Main {
         // Insert K in LinkedList
         ListNode newHead = insertKLinkedList(head, 25);
         printLinkedList(newHead);
+        
+        // Insert K at position C in LinkedList
+        ListNode newHead2 = insertKAtPositionLinkedList(head, 55 , 1);
+        printLinkedList(newHead2);
+    }
+    
+    public static ListNode insertKAtPositionLinkedList(ListNode head, int K, int C){
+        ListNode newNode = new ListNode(K);
+        if(head == null) {
+            head = newNode;
+            return head;
+        }
+
+        if(C == 0) {
+            newNode.next = head;
+            head = newNode;
+            return head;
+        }
+
+        ListNode temp = head;
+        int count = 1;
+        while(temp.next != null && count < C){
+            count++;
+            temp = temp.next;
+        }
+        newNode.next = temp.next;
+        temp.next = newNode;
+        return head;
     }
     
     public static ListNode insertKLinkedList(ListNode head, int K){
