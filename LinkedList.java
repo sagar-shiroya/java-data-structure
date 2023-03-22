@@ -32,6 +32,25 @@ public class Main {
         // Insert K at position C in LinkedList
         ListNode newHead2 = insertKAtPositionLinkedList(head, 55 , 1);
         printLinkedList(newHead2);
+        
+        // Get Nth Node of LinkedList(0-based indexing)
+        int N = 3;
+        System.out.println(N + "th node of LinkedList: " + getNthNode(newHead2, N));
+    }
+    
+    public static int getNthNode(ListNode head, int N){
+        if(head == null) return -1;
+
+        if(N == 0) return head.val;
+
+        ListNode temp = head;
+        int count = 0;
+        while(temp.next != null && count < N){
+            count++;
+            temp = temp.next;
+        }
+        
+        return temp.val;
     }
     
     public static ListNode insertKAtPositionLinkedList(ListNode head, int K, int C){
