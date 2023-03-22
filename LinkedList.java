@@ -36,6 +36,33 @@ public class Main {
         // Get Nth Node of LinkedList(0-based indexing)
         int N = 3;
         System.out.println(N + "th node of LinkedList: " + getNthNode(newHead2, N));
+        
+        // Delete Bth Node
+        int M = 3;
+        ListNode headNode3 = deleteBthNode(newHead2, M);
+        System.out.print("After deleting " + M + "th node from LinkedList(0-based indexing): ");
+        printLinkedList(headNode3);
+    }
+    
+    public static ListNode deleteBthNode(ListNode head, int B) {
+        if(B == 0){
+            head = head.next;
+            return head;
+        }
+        ListNode temp = head;
+
+        int count = 1;
+        while(count < B && temp.next != null){
+            temp = temp.next;
+            count++;
+        }
+        if(temp.next != null){
+            temp.next = (temp.next.next != null) ? temp.next.next : null;
+        } else {
+            temp = null;
+        }
+
+        return head;
     }
     
     public static int getNthNode(ListNode head, int N){
