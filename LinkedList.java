@@ -24,6 +24,33 @@ public class Main {
 
         // Find the mid of LinkedList
         System.out.println("Middle element of LinkedList: " + findMidOfLinkedList(head));
+        
+        // Insert K in LinkedList
+        ListNode newHead = insertKLinkedList(head, 25);
+        printLinkedList(newHead);
+    }
+    
+    public static ListNode insertKLinkedList(ListNode head, int K){
+        ListNode newNode = new ListNode(K);
+        if(head == null) {
+            head = newNode;
+            return head;
+        }
+
+        if(K < head.val){
+            newNode.next = head;
+            head = newNode;
+            return head;
+        }
+
+        ListNode temp = head;
+        while(temp.next != null && K > temp.next.val){
+            temp = temp.next;
+        }
+        newNode.next = temp.next;
+        temp.next = newNode;
+
+        return head;
     }
 
     public static int findMidOfLinkedList(ListNode head){
